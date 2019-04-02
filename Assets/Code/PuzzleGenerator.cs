@@ -25,7 +25,7 @@ public class PuzzleGenerator : MonoBehaviour
     #endregion
     void Start()
     {
-        CreatePuzzle();
+       // CreatePuzzle();
         Camera cam = Camera.main;
         float width = 2f * cam.orthographicSize * cam.aspect;
         cam.orthographicSize = _blocksPerLine / (2 * cam.aspect);
@@ -41,8 +41,9 @@ public class PuzzleGenerator : MonoBehaviour
 
     #region Methods
 
-    private void CreatePuzzle()
+    public void CreatePuzzle(Texture2D image)
     {
+        Debug.Log("CreatePuzzle");
         _blocks = new Block[_blocksPerLine,_blocksPerLine];
         Texture2D[,] imageSlicers = ImageSlicer.GetSlicers(image, _blocksPerLine);
         for (int y = 0; y < _blocksPerLine; y++)
@@ -146,7 +147,7 @@ public class PuzzleGenerator : MonoBehaviour
         }     
     }
 
-    private void StartShuffle()
+    public void StartShuffle()
     {
         _state = PuzzleState.Shuffling;
         _shuffleMovesRemaining = _shuffleLenth;
